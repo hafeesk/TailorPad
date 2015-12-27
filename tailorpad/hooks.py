@@ -19,7 +19,7 @@ app_license = "MIT"
 # app_include_js = "/assets/tailorpad/js/tailorpad.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/tailorpad/css/tailorpad.css"
+web_include_css = "/assets/tailorpad/css/tailorpad.css"
 # web_include_js = "/assets/tailorpad/js/tailorpad.js"
 
 # Home Pages
@@ -43,7 +43,7 @@ app_license = "MIT"
 # ------------
 
 # before_install = "tailorpad.install.before_install"
-# after_install = "tailorpad.install.after_install"
+after_install = "tailorpad.install.after_install"
 
 # Desk Notifications
 # ------------------
@@ -95,6 +95,11 @@ app_license = "MIT"
 # 		"tailorpad.tasks.monthly"
 # 	]
 # }
+doctype_js = {
+    "User": ["custom_scripts/user.js"],
+    "Item": ["custom_scripts/item.js"]
+}
+
 
 # Testing
 # -------
@@ -107,4 +112,3 @@ app_license = "MIT"
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "tailorpad.event.get_events"
 # }
-
