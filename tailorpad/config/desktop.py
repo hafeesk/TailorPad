@@ -9,5 +9,11 @@ def get_data():
 			"icon": "octicon octicon-file-directory",
 			"type": "module",
 			"label": _("Tailorpad")
+		},
+		"Admin": {
+			"color": "#981B77",
+			"icon": "octicon octicon-briefcase",
+			"type": "module",
+			"label": _("Admin")
 		}
 	}
