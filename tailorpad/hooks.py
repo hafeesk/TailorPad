@@ -25,6 +25,8 @@ web_include_css = "/assets/tailorpad/css/tailorpad.css"
 # Home Pages
 # ----------
 
+fixtures = ['Custom Field', 'Property Setter']
+
 # application home page (will override Website Settings)
 # home_page = "login"
 
@@ -67,13 +69,12 @@ after_install = "tailorpad.install.after_install"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Sales Order": {
+		"on_submit": ["tailorpad.custom_folder.custom_selling.submit_event", "tailorpad.custom_folder.custom_buying.submit_event"],
+		"on_cancel": ["tailorpad.custom_folder.custom_selling.cancel_event", "tailorpad.custom_folder.custom_buying.cancel_event"]
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -97,7 +98,10 @@ after_install = "tailorpad.install.after_install"
 # }
 doctype_js = {
     "User": ["custom_scripts/user.js"],
-    "Item": ["custom_scripts/item.js"]
+    "Item": ["custom_scripts/item.js"],
+	"Sales Order": ["custom_scripts/sales_order.js"],
+	"Quotation": ["custom_scripts/quotation.js"],
+	"Sales Invoice": ["custom_scripts/sales_invoice.js"]
 }
 
 
