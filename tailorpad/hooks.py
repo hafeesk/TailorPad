@@ -45,7 +45,7 @@ fixtures = ['Custom Field', 'Property Setter']
 # ------------
 
 # before_install = "tailorpad.install.before_install"
-after_install = "tailorpad.install.after_install"
+# after_install = "tailorpad.install.after_install"
 
 # Desk Notifications
 # ------------------
