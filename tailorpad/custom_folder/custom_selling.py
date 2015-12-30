@@ -14,27 +14,28 @@ def make_work_order(doc):
 def prepare_data_for_wo(doc, args):
     quantities = args.split_qty.split(',') if args.split_qty else [args.qty]
     item_data = frappe.db.get_values('Product Bundle Item',
-                {'parent': args.item_code}, ['item_code', 'parent'], as_dict=1) or [{'parent': args.item_code,
-                'item_code': args.item_code}]
+                {'parent': args.item_code}, ['item_code', 'parent', 'qty'], as_dict=1) or [{'parent': args.item_code,
+                'item_code': args.item_code, 'qty':1}]
 
     for items in item_data:
         for qty in quantities:
+            qty = flt(qty) * flt(items.get('qty'))
             create_work_order(doc, args, items, qty)
 
 def create_work_order(doc, args, items, qty):
     wo = frappe.get_doc({
         'doctype': 'Work Order',
         'sales_order': doc.name,
-        'parent_item_code': items.parent,
-        'item_code': items.item_code,
-        'item_name': frappe.db.get_value('Item', items.item_code, 'item_group'),
+        'parent_item_code': items.get('parent'),
+        'item_code': items.get('item_code'),
+        'item_name': frappe.db.get_value('Item', items.get('item_code'), 'item_group'),
         'item_qty': qty,
         'fabric_code': args.fabric_item_code,
         'customer': doc.customer,
         'customer_name': doc.customer_name
     })
-    get_measurement_fields(wo, items.item_code)
-    get_style_fields(wo, items.item_code)
+    get_measurement_fields(wo, items.get('item_code'))
+    get_style_fields(wo, items.get('item_code'))
     wo.save()
 
 def get_measurement_fields(wo, item_code):
